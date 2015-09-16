@@ -1,0 +1,10 @@
+{
+  "name": "assessment",
+  "version": "1.0.0",
+  "description": "Assessment for Merlion",
+  "scripts": {},
+  "author": "Matveev.S",
+  "dependencies": {
+    "react": "^0.13.3"
+  }
+}
