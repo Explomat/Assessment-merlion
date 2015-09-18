@@ -2,9 +2,27 @@
   "name": "assessment",
   "version": "1.0.0",
   "description": "Assessment for Merlion",
-  "scripts": {},
+  "scripts": {
+    "td": "npm run build-jsx && browserify js/main.js -d -o build/js/bundle.js && rm -rf js/components/**/*.js & rm -rf js/components/*.js",
+    "temptd": "npm run build-jsx && browserify js/main.js -d -o build/js/bundle.js",
+    "deploy": "uglifyjs build/js/bundle.js -o build/js/bundle.min.js && npm run build-css",
+    "build": "browserify js/main.js -d | uglifyjs -mc > build/js/bundle.js",
+    "build-jsx": "jsx js/components --extension jsx js/components",
+    "min-css": "cat style/style.css style/datepicker.css style/bootstrap.min.css | cleancss -o build/style/style.min.css",
+    "start": "node node_modules/webserver/webserver.js"
+  },
   "author": "Matveev.S",
   "dependencies": {
+    "es6-promise": "^3.0.2",
+    "extend-object": "^1.0.0",
+    "flux": "^2.1.1",
     "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "browserify": "^11.1.0",
+    "clean-css": "^3.4.3",
+    "react-tools": "^0.13.3",
+    "uglify-js": "^2.4.24",
+    "webserver": "^1.1.2"
   }
 }
