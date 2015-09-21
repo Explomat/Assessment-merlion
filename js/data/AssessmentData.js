@@ -1,9 +1,13 @@
 var Promise = require('es6-promise').Promise;
-var Assessment = require('../models/Assessment');
+var Ajax = require('../utils/Ajax');
+var Config = require('../config');
+//var Assessment = require('../models/Assessment');
 
 module.exports = {
-
 	getData: function(){
+		return Ajax.sendRequest(Config.url.createPath({action_name: 'getAssessment'}));
+	}
+	/*getData: function(){
 		return new Promise(function(resolve, reject){
 
             //imitatation loading
@@ -11,7 +15,7 @@ module.exports = {
                 resolve(new Assessment());
             }, 100);
         });
-	}
+	}*/
 }
 
 /*module.exports = {

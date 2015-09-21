@@ -131,7 +131,6 @@ var FiltersView = React.createClass({
 	render: function(){
 		return(
 			<div>
-				<span>Фильтры:</span>
 				<PickDatesView endDate={this.props.endDate} startDate={this.props.startDate}/>
 				<StatusFilter selectedStatus={this.props.selectedStatus}/>
 			</div>
