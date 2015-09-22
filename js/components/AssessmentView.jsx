@@ -34,19 +34,22 @@ function getAssessmentState() {
 var DatePickerView = React.createClass({
 
 	componentDidMount: function(){
-		document.body.addEventListener('click', this.handleCloseDisplay);
+		document.body.addEventListener('click', this.handleCloseDisplay, true);
 	},
 
 	componentWillUnmount: function(){
 		document.body.removeEventListener('click', this.handleCloseDisplay);
 	},
 
-	handleToogleDisplay: function(){
+	handleToogleDisplay: function(e){
 		this.setState({isDisplay: !this.state.isDisplay});
 	},
 
-	handleCloseDisplay: function(){
-		this.setState({isDisplay: false});
+	handleCloseDisplay: function(e){
+		if (e.target.toString() === '[object HTMLButtonElement]')
+			return;
+		if (this.state.isDisplay)
+			this.setState({isDisplay: false});
 	},
 
 	handleChangeDate: function(date){
@@ -97,6 +100,7 @@ var PickDatesView = React.createClass({
 
 
 var PersonView = React.createClass({
+	
 	render: function() {
 		return(
 			<div>
