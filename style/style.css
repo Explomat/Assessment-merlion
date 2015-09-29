@@ -54,13 +54,12 @@ textarea {
 }
 
 
-#container{
-    min-width: 600px;
+.container{
+    min-width: 800px;
     font-family:Calibri, Helvetica, serif;
     color:#444;
     width:55%;
-    margin:100px auto 100px;
-    padding:30px;
+    margin-top:100px;
     border:1px solid #ddd;
     background:#f6f6f6;
     -webkit-border-radius:4px;
@@ -76,4 +75,31 @@ textarea {
 
 #app-container {
     min-width: 500px;
+}
+
+.datepicker__label{
+    float:left;
+    margin:6px 5px 0 0;
+}
+.table-header-row{
+    position: relative;
+    text-align: center;
+}
+.table-header-row td span.caret{
+    position: absolute;
+    transition:all .3s ease-in-out;
+    visibility:hidden;
+    opacity: 0;
+    margin:10px;
+}
+.table-header-row td:hover>span.caret{
+    visibility:visible;
+    opacity: 1;
+}
+.table-body tr td:not(:first-child){
+    text-align: center;
+}
+
+.rotate{
+    transform:rotate(180deg);
 }

@@ -84,11 +84,15 @@ var PickDatesView = React.createClass({
 
 	render: function(){
 		return (
-			<div>
-				<span>С</span>
-				<DatePickerView handleChangeDate={this.handleChangeStartDate} date={this.props.startDate}/>
-				<span>По</span>
-				<DatePickerView handleChangeDate={this.handleChangeEndDate} date={this.props.endDate}/>
+			<div className="col-lg-5 col-md-5 col-sm-7 col-xs-7">
+				<span className="datepicker__label">С</span>
+				<div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<DatePickerView handleChangeDate={this.handleChangeStartDate} date={this.props.startDate}/>
+				</div>
+				<span className="datepicker__label">По</span>
+				<div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+					<DatePickerView handleChangeDate={this.handleChangeEndDate} date={this.props.endDate}/>
+				</div>
 			</div>
 		);
 	}
@@ -99,12 +103,13 @@ var PickDatesView = React.createClass({
 var PersonView = React.createClass({
 	render: function() {
 		return(
-			<div>
-				<span>{this.props.fullName}&nbsp;&nbsp;&nbsp;</span>
-				<span>{statuses[this.props.status]}&nbsp;&nbsp;&nbsp;</span>
-				<span>{getDate(this.props.date)}&nbsp;&nbsp;&nbsp;</span>
-				<a href="/">Тыц</a>
-			</div>
+
+					<tr>
+						<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5">{this.props.fullName}</td>
+						<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2">{statuses[this.props.status]}</td>
+						<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{getDate(this.props.date)}</td>
+						<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href="/">Тыц</a></td>
+					</tr>
 		);
 	}
 });
@@ -117,11 +122,13 @@ var StatusFilter = React.createClass({
 
 	render: function(){
 		return(
-			<select onChange={this.handleSelectStatus} defaultValue={this.props.selectedStatus} className="form-control">
-				<option value="all">Показывать всех</option>
-				<option value="assigned">Назначен</option>
-				<option value="finished">Завершен</option>
-			</select>
+			<div className="col-lg-7 col-md-7 col-sm-5 col-xs-5">
+				<select onChange={this.handleSelectStatus} defaultValue={this.props.selectedStatus} className="form-control">
+					<option value="all">Показывать всех</option>
+					<option value="assigned">Назначен</option>
+					<option value="finished">Завершен</option>
+				</select>
+			</div>
 		);
 	}
 });
@@ -130,7 +137,7 @@ var FiltersView = React.createClass({
 
 	render: function(){
 		return(
-			<div>
+			<div className="row">
 				<PickDatesView endDate={this.props.endDate} startDate={this.props.startDate}/>
 				<StatusFilter selectedStatus={this.props.selectedStatus}/>
 			</div>
@@ -163,9 +170,21 @@ var AssessmentView = React.createClass({
 					<FiltersView endDate={this.state.assessment.endDate} startDate={this.state.assessment.startDate} selectedStatus={this.state.assessment.selectedStatus}/>
 				</div>
 				<div className="panel-body">
-					{this.state.persons.map(function(p){
-						return <PersonView id={p.id} key={p.id} fullName={p.fullName} status={p.status} date={p.date}/>;
-					})}
+					<table className="table table-hover">
+						<thead>
+							<tr className="table-header-row">
+								<td>ФИО <span className="caret rotate"></span></td>
+								<td>Статус<span className="caret"></span></td>
+								<td>Дата назначения<span className="caret"></span></td>
+								<td>Ссылка <span className="caret"></span></td>
+							</tr>
+						</thead>
+						<tbody className="table-body">
+							{this.state.persons.map(function(p){
+								return <PersonView id={p.id} key={p.id} fullName={p.fullName} status={p.status} date={p.date}/>;
+							})}
+						</tbody>
+					</table>
 				</div>
 			</div>
 		);
