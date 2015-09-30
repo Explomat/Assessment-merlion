@@ -41,11 +41,14 @@ function getAssessment(){
 		persons: []
 	}
 	for (p in XQuery("sql:select p.person_id as person_id, p.expert_person_id as expert_person_id, p.is_done as is_done, p.assessment_appraise_id as assessment_appraise_id from pas p where p.expert_person_id="+curUserID)){
+		isDone = p.is_done == 1 ? 'finished' : 'assigned';
+		endDate = OpenDoc(UrlFromDocID(Int(p.assessment_appraise_id))).TopElem.end_date;
+		endDate = endDate == null ? Date() : Date(endDate);
 		data.persons.push({
 			id: p.person_id + '',
 			fullName: OpenDoc(UrlFromDocID(Int(p.person_id))).TopElem.fullname + '',
-			status: p.is_done == 1 ? 'finished' : 'assigned',
-			date: StrMimeDate(OpenDoc(UrlFromDocID(Int(p.assessment_appraise_id))).TopElem.end_date)
+			status: isDone,
+			date: StrMimeDate(endDate)
 		});
 	}
 	return stringifyWT(data);

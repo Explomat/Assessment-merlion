@@ -1,5 +1,5 @@
 var serverId = '6196978891908330987';
-var routerUrl = 'http://study.merlion.ru/custom_web_template.html?object_id=6135330846971222087';
+var routerUrl = 'custom_web_template.html?object_id=6135330846971222087';
 
 var url = {
 	defaultPath: routerUrl.concat('&server_id='.concat(serverId)),

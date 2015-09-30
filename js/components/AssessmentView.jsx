@@ -108,7 +108,7 @@ var PersonView = React.createClass({
 	render: function() {
 		return(
 			<tr>
-				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5"><i className="fa fa-male"></i> {this.props.fullName}</td>
+				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5"><i className="fa fa-user"></i>&nbsp;&nbsp;&nbsp;{this.props.fullName}</td>
 				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2">{statuses[this.props.status]}</td>
 				<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{getDate(this.props.date)}</td>
 				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href="view_doc.html?mode=assessment_appraises">Перейти к оценке</a></td>
