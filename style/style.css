@@ -59,7 +59,7 @@ textarea {
     font-family:Calibri, Helvetica, serif;
     color:#444;
     width:55%;
-    margin-top:100px;
+    margin-top:10px;
     border:1px solid #ddd;
     background:#f6f6f6;
     -webkit-border-radius:4px;
@@ -107,4 +107,9 @@ textarea {
 
 .rotate{
     transform:rotate(180deg);
+}
+
+.users-table {
+    height: 400px;
+    overflow-y: auto;
 }

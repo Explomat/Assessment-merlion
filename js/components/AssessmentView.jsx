@@ -191,7 +191,7 @@ var AssessmentView = React.createClass({
 				<div className="panel-heading">
 					<FiltersView endDate={this.state.assessment.endDate} startDate={this.state.assessment.startDate} selectedStatus={this.state.assessment.selectedStatus}/>
 				</div>
-				<div className="panel-body">
+				<div className="panel-body users-table">
 					<table className="table table-hover">
 						<thead>
 							<tr className="table-header-row">
