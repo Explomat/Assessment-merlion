@@ -87,15 +87,20 @@ textarea {
 }
 .table-header-row td span.caret{
     position: absolute;
-    transition:all .3s ease-in-out;
-    visibility:hidden;
+    transition: all .3s ease-in-out;
+    visibility: hidden;
     opacity: 0;
-    margin:10px;
+    margin: 10px;
 }
 .table-header-row td:hover>span.caret{
     visibility:visible;
     opacity: 1;
 }
+
+.table-header-row {
+    cursor: pointer;
+}
+
 .table-body tr td:not(:first-child){
     text-align: center;
 }

@@ -46,7 +46,7 @@ var DatePickerView = React.createClass({
 	},
 
 	handleCloseDisplay: function(e){
-		if (e.target.toString() === '[object HTMLButtonElement]')
+		if (e && e.target && e.toString() === '[object HTMLButtonElement]')
 			return;
 		if (this.state.isDisplay)
 			this.setState({isDisplay: false});
@@ -108,10 +108,10 @@ var PersonView = React.createClass({
 	render: function() {
 		return(
 			<tr>
-				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5">{this.props.fullName}</td>
+				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5"><i className="fa fa-male"></i> {this.props.fullName}</td>
 				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2">{statuses[this.props.status]}</td>
 				<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{getDate(this.props.date)}</td>
-				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href="/">Тыц</a></td>
+				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href="view_doc.html?mode=assessment_appraises">Перейти к оценке</a></td>
 			</tr>
 		);
 	}
@@ -158,6 +158,25 @@ var AssessmentView = React.createClass({
 		AssessmentStore.removeChangeListener(this._onChange);
 	},
 
+	toggleRotate: function(elem){
+		elem.classList.toggle('rotate');
+	},
+
+	handleSortByName: function(e){
+		this.toggleRotate(e.currentTarget.lastChild);
+		AssessmentActions.sortByName(e.currentTarget.lastChild.classList.contains('rotate'));
+	},
+
+	handleSortByState: function(e){
+		this.toggleRotate(e.currentTarget.lastChild);
+		AssessmentActions.sortByState(e.currentTarget.lastChild.classList.contains('rotate'));
+	},
+
+	handleSortByDate: function(e){
+		this.toggleRotate(e.currentTarget.lastChild);
+		AssessmentActions.sortByDate(e.currentTarget.lastChild.classList.contains('rotate'));
+	},
+
 	_onChange: function() {
 		this.setState(getAssessmentState());
 	},
@@ -176,10 +195,10 @@ var AssessmentView = React.createClass({
 					<table className="table table-hover">
 						<thead>
 							<tr className="table-header-row">
-								<td>ФИО <span className="caret rotate"></span></td>
-								<td>Статус<span className="caret"></span></td>
-								<td>Дата назначения<span className="caret"></span></td>
-								<td>Ссылка <span className="caret"></span></td>
+								<td onClick={this.handleSortByName}><span>ФИО </span><span className="caret"></span></td>
+								<td onClick={this.handleSortByState}><span>Статус </span><span className="caret"></span></td>
+								<td onClick={this.handleSortByDate}><span>Дата назначения </span><span className="caret"></span></td>
+								<td>Ссылка</td>
 							</tr>
 						</thead>
 						<tbody className="table-body">

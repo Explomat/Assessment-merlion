@@ -10,9 +10,9 @@ module.exports = function(args){
 	this.statuses = args.statuses || ['all', 'assigned', 'finished'];
 	this.startDate = args.startDate;
 	this.endDate = args.endDate;
-	this.persons = args.persons || [ new Person({fullName:'A', date: new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 1)}), 
-									new Person({fullName:'B', status: 'finished', date: new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 3)}), 
-									new Person({fullName:'C', date: new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 5)}), 
-									new Person({fullName:'D', date: new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 6)})
+	this.persons = args.persons || [ new Person({fullName:'Матвеев Савва Янович', date: new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 1)}), 
+									new Person({fullName:'Габдуллин Дамир Габдульбариевич', status: 'finished', date: new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 3)}), 
+									new Person({fullName:'Беловоденко Кирилл Вадимович', date: new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 5)}), 
+									new Person({fullName:'Морозова Екатерина Игоревна', date: new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - 6)})
 								];
 }

@@ -35,6 +35,24 @@ function checkPersonStatus(personStatus, status){
 	return (personStatus === status || status === 'all');
 }
 
+function sortByName(isAscending){
+	_filterPersons.sort(function(first, second){
+		return first.fullName > second.fullName ? isAscending : first.fullName === second.fullName ? 0 : !isAscending;
+	});
+}
+
+function sortByState(isAscending){
+	_filterPersons.sort(function(first, second){
+		return first.status > second.status ? isAscending : first.status === second.status ? 0 : !isAscending;
+	});
+}
+
+function sortByDate(isAscending){
+	_filterPersons.sort(function(first, second){
+		return first.date > second.date ? isAscending : first.date == second.date ? 0 : !isAscending;
+	});
+}
+
 var AssessmentStore = extend({}, EventEmitter.prototype, {
 
 	getAssessment: function(){
@@ -73,6 +91,15 @@ AssessmentStore.dispatchToken = AppDispatcher.register(function(payload) {
 			break;
 		case AssessmentConstants.CHANGE_STATUS:
 			changeStatus(action.status);
+			break;
+		case AssessmentConstants.SORT_BY_NAME:
+			sortByName(action.isAscending);
+			break;
+		case AssessmentConstants.SORT_BY_STATE:
+			sortByState(action.isAscending);
+			break;
+		case AssessmentConstants.SORT_BY_DATE:
+			sortByDate(action.isAscending);
 			break;
 		default:
 			return true;

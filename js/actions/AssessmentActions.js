@@ -29,6 +29,27 @@ var AssessmentActions = {
 			actionType: AssessmentConstants.CHANGE_STATUS,
 			status: status
 		});
+	},
+
+	sortByName: function(isAscending){
+		AppDispatcher.handleAction({
+			actionType: AssessmentConstants.SORT_BY_NAME,
+			isAscending: isAscending
+		});
+	},
+
+	sortByState: function(isAscending){
+		AppDispatcher.handleAction({
+			actionType: AssessmentConstants.SORT_BY_STATE,
+			isAscending: isAscending
+		});
+	},
+
+	sortByDate: function(isAscending){
+		AppDispatcher.handleAction({
+			actionType: AssessmentConstants.SORT_BY_DATE,
+			isAscending: isAscending
+		});
 	}
 }
 
