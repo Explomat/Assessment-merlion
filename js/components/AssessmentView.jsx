@@ -106,10 +106,11 @@ var PickDatesView = React.createClass({
 var PersonView = React.createClass({
 	
 	render: function() {
+		var isAssignedClass = this.props.status;
 		return(
 			<tr>
 				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5"><i className="fa fa-user"></i>&nbsp;&nbsp;&nbsp;{this.props.fullName}</td>
-				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2">{statuses[this.props.status]}</td>
+				<td className={"col-lg-2 col-md-2 col-sm-2 col-xs-2 "+ isAssignedClass}>{statuses[this.props.status]}</td>
 				<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{getDate(this.props.date)}</td>
 				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href="view_doc.html?mode=assessment_appraises">Перейти к оценке</a></td>
 			</tr>
@@ -197,13 +198,13 @@ var AssessmentView = React.createClass({
 							<tr className="table-header-row">
 								<td onClick={this.handleSortByName}><span>ФИО </span><span className="caret"></span></td>
 								<td onClick={this.handleSortByState}><span>Статус </span><span className="caret"></span></td>
-								<td onClick={this.handleSortByDate}><span>Дата назначения </span><span className="caret"></span></td>
+								<td onClick={this.handleSortByDate}><span>Дата окончания </span><span className="caret"></span></td>
 								<td>Ссылка</td>
 							</tr>
 						</thead>
 						<tbody className="table-body">
 							{this.state.persons.map(function(p){
-								return <PersonView id={p.id} key={p.id} fullName={p.fullName} status={p.status} date={p.date}/>;
+								return <PersonView key={p.key} fullName={p.fullName} status={p.status} date={p.date}/>;
 							})}
 						</tbody>
 					</table>

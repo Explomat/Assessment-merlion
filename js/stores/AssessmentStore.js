@@ -8,6 +8,9 @@ var _assessment = {},  _filterPersons = [];
 function receiveData(assessment){
 	_assessment = assessment;
 	_filterPersons = JSON.parse(JSON.stringify(_assessment.persons));
+	/*_filterPersons = _assessment.persons.filter(function(p){
+		return (new Date(p.date) >= new Date(_assessment.startDate) && new Date(p.date) <= new Date(_assessment.endDate) && checkPersonStatus(p.status, status));
+	});*/
 }
 
 function changeStartDate(date){

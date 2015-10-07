@@ -33,19 +33,24 @@ function stringifyWT(obj) {
 }
 
 function getAssessment(){
+	var date = DateOffset(Date(), DATE_OFFSET);
 	var data = {
-		startDate: StrMimeDate(DateOffset(Date(), DATE_OFFSET)),
+		startDate: StrMimeDate(date),
 		endDate: StrMimeDate(Date()),
 		selectedStatus: 'all',
 		statuses: ['all', 'assigned', 'finished'],
 		persons: []
 	}
-	for (p in XQuery("sql:select p.person_id as person_id, p.expert_person_id as expert_person_id, p.is_done as is_done, p.assessment_appraise_id as assessment_appraise_id from pas p where p.expert_person_id="+curUserID)){
-		isDone = p.is_done == 1 ? 'finished' : 'assigned';
+	for (p in XQuery("sql:select p.id, p.person_id, p.expert_person_id, p.is_done, p.assessment_appraise_id from pas p where p.expert_person_id="+curUserID)){
+		isDone = p.is_done == true ? 'finished' : 'assigned';
 		endDate = OpenDoc(UrlFromDocID(Int(p.assessment_appraise_id))).TopElem.end_date;
 		endDate = endDate == null ? Date() : Date(endDate);
+		if (endDate < date) {
+			data.startDate = StrMimeDate(endDate);
+		}
 		data.persons.push({
 			id: p.person_id + '',
+			key: p.id + '',
 			fullName: OpenDoc(UrlFromDocID(Int(p.person_id))).TopElem.fullname + '',
 			status: isDone,
 			date: StrMimeDate(endDate)

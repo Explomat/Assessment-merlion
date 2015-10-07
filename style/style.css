@@ -113,3 +113,11 @@ textarea {
     height: 400px;
     overflow-y: auto;
 }
+
+.assigned {
+    color: green;
+}
+
+.finished {
+    color: red;
+}
