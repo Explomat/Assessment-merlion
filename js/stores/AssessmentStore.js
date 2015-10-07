@@ -39,20 +39,23 @@ function checkPersonStatus(personStatus, status){
 }
 
 function sortByName(isAscending){
+	var isAsc = isAscending ? 1 : -1;
 	_filterPersons.sort(function(first, second){
-		return first.fullName > second.fullName ? isAscending : first.fullName === second.fullName ? 0 : !isAscending;
+		return first.fullName > second.fullName ? isAsc : first.fullName === second.fullName ? 0 : -(isAsc);
 	});
 }
 
 function sortByState(isAscending){
+	var isAsc = isAscending ? 1 : -1;
 	_filterPersons.sort(function(first, second){
-		return first.status > second.status ? isAscending : first.status === second.status ? 0 : !isAscending;
+		return first.status > second.status ? isAsc : first.status === second.status ? 0 :  -(isAsc);
 	});
 }
 
 function sortByDate(isAscending){
+	var isAsc = isAscending ? 1 : -1;
 	_filterPersons.sort(function(first, second){
-		return first.date > second.date ? isAscending : first.date == second.date ? 0 : !isAscending;
+		return first.date > second.date ? isAsc : first.date == second.date ? 0 :  -(isAsc);
 	});
 }
 
