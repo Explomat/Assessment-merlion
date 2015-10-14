@@ -48,12 +48,14 @@ function getAssessment(){
 		if (endDate < date) {
 			data.startDate = StrMimeDate(endDate);
 		}
+		href = p.is_done == true ? 'view_doc.html?mode=assessment_merlion_collaborator&user=' + p.person_id + '': 'view_doc.html?mode=assessment_appraises';
 		data.persons.push({
 			id: p.person_id + '',
 			key: p.id + '',
 			fullName: OpenDoc(UrlFromDocID(Int(p.person_id))).TopElem.fullname + '',
 			status: isDone,
-			date: StrMimeDate(endDate)
+			date: StrMimeDate(endDate),
+			href: href
 		});
 	}
 	return stringifyWT(data);

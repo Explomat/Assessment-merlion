@@ -125,7 +125,7 @@ var PersonView = React.createClass({
 				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5"><i className="fa fa-user"></i><span className="person-name">{this.props.fullName}</span></td>
 				<td className={"col-lg-2 col-md-2 col-sm-2 col-xs-2 "+ isAssignedClass}>{statuses[this.props.status]}</td>
 				<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{getDate(this.props.date)}</td>
-				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href="view_doc.html?mode=assessment_appraises">Перейти к оценке</a></td>
+				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href={this.props.href}>Перейти к оценке</a></td>
 			</tr>
 		);
 	}
@@ -217,7 +217,7 @@ var AssessmentView = React.createClass({
 						</thead>
 						<tbody className="table-body">
 							{this.state.persons.map(function(p){
-								return <PersonView key={p.key} fullName={p.fullName} status={p.status} date={p.date}/>;
+								return <PersonView key={p.key} fullName={p.fullName} status={p.status} date={p.date} href={p.href}/>;
 							})}
 						</tbody>
 					</table>

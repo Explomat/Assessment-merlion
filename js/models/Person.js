@@ -7,4 +7,5 @@ module.exports = function(args){
 	this.fullName = args.fullName || 'Default name';
 	this.status = args.status || 'assigned';
 	this.date = args.date || new Date();
+	this.href = 'view_doc.html?mode=assessment_appraises';
 }
