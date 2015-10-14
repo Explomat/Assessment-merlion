@@ -16,22 +16,26 @@ function receiveData(assessment){
 function changeStartDate(date){
 	_assessment.startDate = date;
 	_filterPersons = _assessment.persons.filter(function(p){
-		return (new Date(p.date) >= date && checkPersonStatus(p.status, _assessment.selectedStatus));
+		return (checkDates(new Date(p.date), _assessment.startDate, _assessment.endDate) && checkPersonStatus(p.status, _assessment.selectedStatus));
 	});
 }
 
 function changeEndDate(date){
 	_assessment.endDate = date;
 	_filterPersons = _assessment.persons.filter(function(p){
-		return (new Date(p.date) <= date && checkPersonStatus(p.status, _assessment.selectedStatus));
+		return (checkDates(new Date(p.date), _assessment.startDate, _assessment.endDate) && checkPersonStatus(p.status, _assessment.selectedStatus));
 	});
 }
 
 function changeStatus(status){
 	_assessment.selectedStatus = status;
 	_filterPersons = _assessment.persons.filter(function(p){
-		return (new Date(p.date) >= _assessment.startDate && new Date(p.date) <= _assessment.endDate && checkPersonStatus(p.status, status));
+		return (checkDates(new Date(p.date), _assessment.startDate, _assessment.endDate) && checkPersonStatus(p.status, _assessment.selectedStatus));
 	});
+}
+
+function checkDates(pDate, startDate, endDate){
+	return (pDate >= startDate && pDate <= endDate);
 }
 
 function checkPersonStatus(personStatus, status){

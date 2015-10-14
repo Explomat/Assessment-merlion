@@ -34,22 +34,35 @@ function getAssessmentState() {
 var DatePickerView = React.createClass({
 
 	componentDidMount: function(){
-		document.body.addEventListener('click', this.handleCloseDisplay, true);
+		document.addEventListener('click', this.handleCloseDisplay, true);
 	},
 
 	componentWillUnmount: function(){
-		document.body.removeEventListener('click', this.handleCloseDisplay);
+		document.removeEventListener('click', this.handleCloseDisplay);
 	},
 
 	handleToogleDisplay: function(e){
+		if (e){
+			e.stopPropagation();
+    		e.nativeEvent.stopImmediatePropagation();
+		}
 		this.setState({isDisplay: !this.state.isDisplay});
 	},
 
 	handleCloseDisplay: function(e){
-		if (e && e.target && e.toString() === '[object HTMLButtonElement]')
-			return;
-		if (this.state.isDisplay)
-			this.setState({isDisplay: false});
+		/*if (e && e.target && e.target.toString() === '[object HTMLButtonElement]') {
+			//e.stopPropagation();
+    		//e.nativeEvent.stopImmediatePropagation();
+    		return;
+		}*/
+		if (e) {
+			if ((e.target && e.target.firstChild && e.target.firstChild.nodeValue) && (e.target.firstChild.nodeValue === '>>' || e.target.firstChild.nodeValue === '<<') || e.target.isSameNode(this.getDOMNode().querySelector('div.numberpicker')) === true){
+				e.preventDefault();
+			}
+			else if (this.state.isDisplay){
+				this.setState({isDisplay: false});
+			}
+		}
 	},
 
 	handleChangeDate: function(date){
@@ -109,7 +122,7 @@ var PersonView = React.createClass({
 		var isAssignedClass = this.props.status;
 		return(
 			<tr>
-				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5"><i className="fa fa-user"></i>&nbsp;&nbsp;&nbsp;{this.props.fullName}</td>
+				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5"><i className="fa fa-user"></i><span className="person-name">{this.props.fullName}</span></td>
 				<td className={"col-lg-2 col-md-2 col-sm-2 col-xs-2 "+ isAssignedClass}>{statuses[this.props.status]}</td>
 				<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{getDate(this.props.date)}</td>
 				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href="view_doc.html?mode=assessment_appraises">Перейти к оценке</a></td>
