@@ -7,5 +7,6 @@ module.exports = keyMirror({
 	CHANGE_STATUS: null,
 	SORT_BY_NAME: null,
 	SORT_BY_STATE: null,
-	SORT_BY_DATE: null
+	SORT_BY_DATE: null,
+	SORT_BY_RESULT: null
 });

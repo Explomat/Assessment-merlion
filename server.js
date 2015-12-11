@@ -32,6 +32,14 @@ function stringifyWT(obj) {
 	return outStr;
 }
 
+function getResult(competences) {
+	var compResult = 0;
+	for (c in competences){
+		compResult = compResult + (c.weight * c.mark_value);
+	}
+	return Int(compResult / ArrayCount(competences)) + '';
+}
+
 function getAssessment(){
 	var date = DateOffset(Date(), DATE_OFFSET);
 	var data = {
@@ -48,12 +56,13 @@ function getAssessment(){
 		if (endDate < date) {
 			data.startDate = StrMimeDate(endDate);
 		}
-		href = p.is_done == true ? 'view_doc.html?mode=assessment_merlion_collaborator&user=' + p.person_id + '': 'view_doc.html?mode=assessment_appraises';
+		href = p.is_done == true ? 'view_doc.html?mode=assessment_merlion_collaborator&user=' + p.person_id + '': 'view_doc.html?mode=assessment_appraise&assessment_appraise_id='+p.assessment_appraise_id+'&pa_id='+p.id+'&assessment_appraise_type=competence_appraisal';
 		data.persons.push({
 			id: p.person_id + '',
 			key: p.id + '',
 			fullName: OpenDoc(UrlFromDocID(Int(p.person_id))).TopElem.fullname + '',
 			status: isDone,
+			result: getResult(OpenDoc(UrlFromDocID(Int(p.id))).TopElem.competences),
 			date: StrMimeDate(endDate),
 			href: href
 		});

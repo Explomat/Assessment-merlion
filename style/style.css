@@ -110,3 +110,7 @@ textarea {
 .person-name {
     margin-left: 10px;
 }
+
+.link {
+    white-space: nowrap;
+}

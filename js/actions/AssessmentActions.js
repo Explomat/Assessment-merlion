@@ -50,6 +50,13 @@ var AssessmentActions = {
 			actionType: AssessmentConstants.SORT_BY_DATE,
 			isAscending: isAscending
 		});
+	},
+
+	sortByResult: function(isAscending){
+		AppDispatcher.handleAction({
+			actionType: AssessmentConstants.SORT_BY_RESULT,
+			isAscending: isAscending
+		});
 	}
 }
 

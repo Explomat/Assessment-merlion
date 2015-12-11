@@ -63,6 +63,13 @@ function sortByDate(isAscending){
 	});
 }
 
+function sortByResult(isAscending){
+	var isAsc = isAscending ? 1 : -1;
+	_filterPersons.sort(function(first, second){
+		return first.result > second.result ? isAsc : first.result == second.result ? 0 :  -(isAsc);
+	});
+}
+
 var AssessmentStore = extend({}, EventEmitter.prototype, {
 
 	getAssessment: function(){
@@ -110,6 +117,9 @@ AssessmentStore.dispatchToken = AppDispatcher.register(function(payload) {
 			break;
 		case AssessmentConstants.SORT_BY_DATE:
 			sortByDate(action.isAscending);
+			break;
+		case AssessmentConstants.SORT_BY_RESULT:
+			sortByResult(action.isAscending);
 			break;
 		default:
 			return true;

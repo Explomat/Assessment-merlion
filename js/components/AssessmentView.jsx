@@ -120,12 +120,14 @@ var PersonView = React.createClass({
 	
 	render: function() {
 		var isAssignedClass = this.props.status;
+		var linkText = statuses.finished === statuses[this.props.status] ? 'Посмотреть результат' : 'Перейти к оценке';
 		return(
 			<tr>
 				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5"><i className="fa fa-user"></i><span className="person-name">{this.props.fullName}</span></td>
 				<td className={"col-lg-2 col-md-2 col-sm-2 col-xs-2 "+ isAssignedClass}>{statuses[this.props.status]}</td>
+				<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{this.props.result +' %'}</td>
 				<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{getDate(this.props.date)}</td>
-				<td className="col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href={this.props.href}>Перейти к оценке</a></td>
+				<td className="link col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href={this.props.href}>{linkText}</a></td>
 			</tr>
 		);
 	}
@@ -191,6 +193,11 @@ var AssessmentView = React.createClass({
 		AssessmentActions.sortByDate(e.currentTarget.lastChild.classList.contains('rotate'));
 	},
 
+	handleSortByResult: function(e){
+		this.toggleRotate(e.currentTarget.lastChild);
+		AssessmentActions.sortByResult(e.currentTarget.lastChild.classList.contains('rotate'));
+	},
+
 	_onChange: function() {
 		this.setState(getAssessmentState());
 	},
@@ -211,13 +218,14 @@ var AssessmentView = React.createClass({
 							<tr className="table-header-row">
 								<td onClick={this.handleSortByName}><span>ФИО </span><span className="caret"></span></td>
 								<td onClick={this.handleSortByState}><span>Статус </span><span className="caret"></span></td>
+								<td onClick={this.handleSortByResult}><span>Результат </span><span className="caret"></span></td>
 								<td onClick={this.handleSortByDate}><span>Дата окончания </span><span className="caret"></span></td>
 								<td>Ссылка</td>
 							</tr>
 						</thead>
 						<tbody className="table-body">
 							{this.state.persons.map(function(p){
-								return <PersonView key={p.key} fullName={p.fullName} status={p.status} date={p.date} href={p.href}/>;
+								return <PersonView key={p.key} {...p}/>;
 							})}
 						</tbody>
 					</table>
