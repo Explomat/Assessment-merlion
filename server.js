@@ -37,7 +37,7 @@ function getResult(competences) {
 	for (c in competences){
 		compResult = compResult + (c.weight * c.mark_value);
 	}
-	return Int(compResult / ArrayCount(competences)) + '';
+	return StrReal(compResult / 100, 2);
 }
 
 function getAssessment(){
