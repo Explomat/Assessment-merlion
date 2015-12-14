@@ -8,7 +8,7 @@
     "deploy": "uglifyjs build/js/bundle.js -o build/js/bundle.min.js && npm run build-css",
     "build": "browserify js/main.js -d | uglifyjs -mc > build/js/bundle.js",
     "build-jsx": "jsx js/components --extension jsx js/components",
-    "build-css": "cat style/style.css style/font-awesome.css style/datepicker.css style/bootstrap.min.css | cleancss -o build/style/style.min.css",
+    "build-css": "cat style/style.css style/font-awesome.css style/datepicker.css style/bootstrap.min.css style/competence.css | cleancss -o build/style/style.min.css",
     "start": "node node_modules/webserver/webserver.js"
   },
 

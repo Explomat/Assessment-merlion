@@ -1,0 +1,20 @@
+
+.competence{
+
+}
+
+.competence.competence_not-developed{
+	background-color: #ccc;
+}
+.competence.competence_elementary{
+	background-color: red;
+}
+.competence.competence_base{
+	background-color: orange;
+}
+.competence.competence_advanced{
+	background-color: yellow;
+}
+.competence.competence_expert{
+	background-color: green;
+}

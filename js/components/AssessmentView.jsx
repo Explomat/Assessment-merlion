@@ -121,11 +121,18 @@ var PersonView = React.createClass({
 	render: function() {
 		var isAssignedClass = this.props.status;
 		var linkText = statuses.finished === statuses[this.props.status] ? 'Посмотреть результат' : 'Перейти к оценке';
+	    var classes = '';
+		var val = Number(this.props.result);
+		if (val <= 28) classes += 'competence_not-developed';
+		else if (val >= 30 && val < 50) classes += 'competence_elementary';
+		else if (val >= 50 && val < 70) classes += 'competence_base';
+		else if (val >= 70 && val < 90) classes += 'competence_advanced'; 
+		else if (val >= 90 && val <=100) classes += 'competence_expert';
 		return(
 			<tr>
 				<td className="col-lg-6 col-md-6 col-sm-5 col-xs-5"><i className="fa fa-user"></i><span className="person-name">{this.props.fullName}</span></td>
 				<td className={"col-lg-2 col-md-2 col-sm-2 col-xs-2 "+ isAssignedClass}>{statuses[this.props.status]}</td>
-				<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{this.props.result +' %'}</td>
+				<td className={"col-lg-2 col-md-2 col-sm-3 col-xs-3 competence " + classes}>{this.props.result +' %'}</td>
 				<td className="col-lg-2 col-md-2 col-sm-3 col-xs-3">{getDate(this.props.date)}</td>
 				<td className="link col-lg-2 col-md-2 col-sm-2 col-xs-2"><a href={this.props.href}>{linkText}</a></td>
 			</tr>
